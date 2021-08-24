@@ -1,13 +1,32 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {Link} from 'react-router-dom'
+import { FaShoppingBasket } from "react-icons/fa"
+import AppContext from '../context/AppContext'
 import '../styles/components/Header.css'
 
-const Header = () => (
+const Header = () => {
+  const {state} = useContext(AppContext);
+  const {cart} = state;
+return (
     <div className="Header">
-      <h1 className="Header-title">Macao Garden Merch</h1>
+      
+        <h1 className="Header-title">
+          <Link to="/">
+            Macao Garden Merch
+          </Link>
+        </h1>
+      
+      
       <div className="Header-checkout">
-        Checkout
+        <Link to="/checkout">
+          <i className="fas"><FaShoppingBasket/></i>
+          
+        </Link>
+        {cart.length > 0 && <div className="header-alert">{cart.length}</div>}
+        
       </div>
     </div>
-    )
+    );
+};
 
 export default Header
