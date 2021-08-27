@@ -226,7 +226,9 @@ note: if we want to check the correct sintax of our src files, just need to exec
     in devServer add:
         historyApiFallback: true
 
-27.
+-------------------------------------------------------------------------------
+27. To use the Paypal Button, we need to instal paypal libraries:
+    => npm i react-paypal-button-v2
 
 
 
