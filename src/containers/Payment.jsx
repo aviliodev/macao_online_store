@@ -2,14 +2,17 @@ import React, {useContext} from "react";
 import {useHistory} from 'react-router-dom'
 import { PayPalButton } from "react-paypal-button-v2";
 import AppContext from '../context/AppContext'
+import pass from '../llaves'
 import '../styles/components/Payment.css'
 
 const Payment = () => {
     const {state, addNewOrder} = useContext(AppContext);
     const {cart, buyer} = state;
     const history = useHistory();
+    const secretClientID = pass.paypalPaymentClientID;
+
     const paypalOptions = {
-        clientId: 'ASnq_Nb9rB39uKQGF4EJQ7lSEAyl4-5UZX0NtLVMbIu6ARZU2iwksfH1AjRQcrXK_pQLzHjoHPe0hBKC',
+        clientId: secretClientID,
         intent: 'capture',
         currency: 'USD',
       };
@@ -17,7 +20,7 @@ const Payment = () => {
         layout: 'vertical',
         shape: 'rect',
     };
-    
+
     const handleSumTotal = () => {
         const reducer = (accumulator, currentValue) => accumulator + currentValue.price;
         const sum = cart.reduce(reducer, 0);
